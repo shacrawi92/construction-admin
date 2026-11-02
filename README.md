@@ -1,59 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🏗️ Construction SaaS · Admin Panel
 
-## About Laravel
+### The office command center for construction companies, built on Filament
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Projects · Estimations · Budgets · Materials · Labor · Team
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Filament](https://img.shields.io/badge/Filament-3-FDAE4B?style=for-the-badge&logoColor=black)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![Tenancy](https://img.shields.io/badge/multi--tenant-stancl%2Ftenancy-F59E0B?style=flat-square)
+![RBAC](https://img.shields.io/badge/RBAC-spatie%2Fpermission-F59E0B?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-F59E0B?style=flat-square)
 
-## Learning Laravel
+**Part of the Construction SaaS suite:**
+[Backend API](https://github.com/shacrawi92/construction-backend) · **Admin panel** (this repo) · [Field PWA](https://github.com/shacrawi92/construction-pwa)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+</div>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🧭 Overview
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Office staff run the whole company from this panel. They create projects, build estimations from reusable templates, approve budgets and material requests coming from the field, and watch costs on live dashboards. The data model is tenant-ready (central and tenant migrations, `stancl/tenancy`) so each company can run in isolation.
 
-### Premium Partners
+## 🖥 Resources
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Resource | Purpose |
+|---|---|
+| 📁 **Projects** | Project register, status and timelines |
+| 📐 **Estimations** | Line-item estimates with PDF export |
+| 🧩 **Estimation templates** | Reusable estimate blueprints |
+| 🧱 **Work types** | Catalog of work categories and unit rates |
+| 💰 **Budgets** | Budgets and transactions per project |
+| 📦 **Materials** | Material catalog and stock |
+| 📝 **Material requests** | Approve or reject requests submitted by foremen |
+| 👷 **Labor logs** | Daily labor records from the field |
+| 👤 **Users** | Team members, roles and permissions |
 
-## Contributing
+## 📊 Dashboard widgets
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Cost overview**: committed versus spent across all projects
+- **Financial burn rate chart**: spending velocity over time
+- **Project status chart**: portfolio at a glance
+- **Low-stock alert table**: materials that need reordering
 
-## Code of Conduct
+## 🛠 Tech stack
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Layer | Technology |
+|---|---|
+| Framework | Laravel 12, PHP 8.2+ |
+| Admin UI | Filament 3 (Livewire, Alpine, Tailwind) |
+| Tenancy | `stancl/tenancy` with central and tenant migrations |
+| Auth & roles | Laravel Sanctum, `spatie/laravel-permission` |
+| Documents | `barryvdh/laravel-dompdf` |
 
-## Security Vulnerabilities
+## 🚀 Getting started
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/shacrawi92/construction-admin.git
+cd construction-admin
+composer install
+npm install && npm run build
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan make:filament-user
+php artisan serve        # open http://localhost:8000/admin
+```
 
-## License
+For production, start from [`.env.production.example`](.env.production.example).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📁 Structure
+
+```
+app/
+├── Filament/
+│   ├── Resources/      # 9 CRUD resources
+│   └── Widgets/        # 4 dashboard widgets
+├── Models/
+└── Providers/Filament/AdminPanelProvider.php
+database/migrations/
+├── central/            # tenants, domains
+└── tenant/             # company data
+```
+
+## 📄 License
+
+MIT
+
+<div align="center">
+
+Built by **[@shacrawi92](https://github.com/shacrawi92)**
+
+</div>
